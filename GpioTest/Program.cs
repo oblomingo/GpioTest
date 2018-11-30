@@ -12,28 +12,17 @@ namespace GpioTest
 		{
 			try
 			{
-				using (TemperatureSensorAM2302 sensor = new TemperatureSensorAM2302(Pi.Gpio[P1.Gpio17]))
+				using (TemperatureSensorAM2302 sensor = new TemperatureSensorAM2302(Pi.Gpio[P1.Gpio22]))
 				{
 					sensor.OnDataAvailable += Sensor_OnDataAvailable;
 					sensor.Start();
 				}
 
+				var controller = GpioController.Instance;
+				controller.Pin21.Write(GpioPinValue.High);
+				var isOn = controller.Pin21.Read();
+
 				Console.ReadLine();
-				//var dht = new DHT(Pi.Gpio.Pin07, DHTSensorTypes.DHT22);
-				//while (true)
-				//{
-				//	try
-				//	{
-				//		var d = dht.ReadData();
-				//		Console.WriteLine(DateTime.UtcNow);
-				//		Console.WriteLine(" temp: " + d.TempCelcius);
-				//		Console.WriteLine(" hum: " + d.Humidity);
-				//	}
-				//	catch (DHTException)
-				//	{
-				//	}
-				//	Thread.Sleep(5000);
-				//}
 			}
 			catch (Exception e)
 			{
