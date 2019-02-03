@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Reactive.Core" Version="4.1.2" />
     <PackageReference Include="Unosquare.Raspberry.IO" Version="0.17.2" />
     <PackageReference Include="Unosquare.RaspberryIO.Peripherals" Version="0.2.3" />
   </ItemGroup>

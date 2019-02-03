@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Threading;
+using System.Reactive.Linq;
 using Unosquare.RaspberryIO;
 using Unosquare.RaspberryIO.Gpio;
 using Unosquare.RaspberryIO.Peripherals;
@@ -14,13 +14,17 @@ namespace GpioTest
 			{
 				using (TemperatureSensorAM2302 sensor = new TemperatureSensorAM2302(Pi.Gpio[P1.Gpio22]))
 				{
-					sensor.OnDataAvailable += Sensor_OnDataAvailable;
+					Observable
+						.FromEventPattern<TemperatureSensorAM2302.AM2302DataReadEventArgs>(sensor, "AM2302DataReadEvent")
+						.Sample(TimeSpan.FromSeconds(20))
+						.Subscribe(x => Sensor_OnDataAvailable(x.EventArgs));
+					//sensor.OnDataAvailable += Sensor_OnDataAvailable;
 					sensor.Start();
 				}
 
-				var controller = GpioController.Instance;
-				controller.Pin21.Write(GpioPinValue.High);
-				var isOn = controller.Pin21.Read();
+				//var controller = GpioController.Instance;
+				//controller.Pin21.Write(GpioPinValue.High);
+				//var isOn = controller.Pin21.Read();
 
 				Console.ReadLine();
 			}
@@ -31,9 +35,14 @@ namespace GpioTest
 			}
 		}
 
-		private static void Sensor_OnDataAvailable(object sender, TemperatureSensorAM2302.AM2302DataReadEventArgs e)
+		private static void Sensor_OnDataAvailable(TemperatureSensorAM2302.AM2302DataReadEventArgs e)
 		{
 			Console.WriteLine($"[{DateTime.Now.ToShortTimeString()}] TemperatureCelsius: {e.TemperatureCelsius}, HumidityPercentage: {e.HumidityPercentage}");
 		}
+
+		//private static void Sensor_OnDataAvailable(object sender, TemperatureSensorAM2302.AM2302DataReadEventArgs e)
+		//{
+		//	Console.WriteLine($"[{DateTime.Now.ToShortTimeString()}] TemperatureCelsius: {e.TemperatureCelsius}, HumidityPercentage: {e.HumidityPercentage}");
+		//}
 	}
 }
