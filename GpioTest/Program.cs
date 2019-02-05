@@ -13,43 +13,43 @@ namespace GpioTest
 		{
 			try
 			{
-				Pi.Gpio.Pin02.PinMode = GpioPinDriveMode.Input;
+				Pi.Gpio.Pin26.PinMode = GpioPinDriveMode.Input;
 				// The below lines are reoughly equivalent
-				var isOn = Pi.Gpio.Pin21.Read(); // Reads as a boolean
+				var isOn = Pi.Gpio.Pin26.Read(); // Reads as a boolean
 				var isOnText = isOn ? "on" : "off";
-				Console.WriteLine($"Gpio21 is {isOnText}");
+				Console.WriteLine($"Gpio26 is {isOnText}");
 
 				Console.ReadLine();
 
-				Console.WriteLine($"Turnning on Gpio21");
-				Pi.Gpio.Pin21.PinMode = GpioPinDriveMode.Output;
+				Console.WriteLine($"Turnning on Gpio26");
+				Pi.Gpio.Pin26.PinMode = GpioPinDriveMode.Output;
 				// The below lines are reoughly equivalent
-				Pi.Gpio.Pin21.Write(true); // Writes a boolean
-				Console.WriteLine($"Turned on Gpio21");
+				Pi.Gpio.Pin26.Write(true); // Writes a boolean
+				Console.WriteLine($"Turned on Gpio26");
 
 				Console.ReadLine();
 
-				Pi.Gpio.Pin02.PinMode = GpioPinDriveMode.Input;
+				Pi.Gpio.Pin26.PinMode = GpioPinDriveMode.Input;
 				// The below lines are reoughly equivalent
-				isOn = Pi.Gpio.Pin21.Read(); // Reads as a boolean
+				isOn = Pi.Gpio.Pin26.Read(); // Reads as a boolean
 				isOnText = isOn ? "on" : "off";
-				Console.WriteLine($"Gpio21 is {isOnText}");
+				Console.WriteLine($"Gpio26 is {isOnText}");
 
 				Console.ReadLine();
 
-				Console.WriteLine($"Turnning off Gpio21");
-				Pi.Gpio.Pin21.PinMode = GpioPinDriveMode.Output;
+				Console.WriteLine($"Turnning off Gpio26");
+				Pi.Gpio.Pin26.PinMode = GpioPinDriveMode.Output;
 				// The below lines are reoughly equivalent
-				Pi.Gpio.Pin21.Write(false); // Writes a boolean
-				Console.WriteLine($"Turned off Gpio21");
+				Pi.Gpio.Pin26.Write(GpioPinValue.Low); // Writes a boolean
+				Console.WriteLine($"Turned off Gpio26");
 
 				Console.ReadLine();
 
-				Pi.Gpio.Pin02.PinMode = GpioPinDriveMode.Input;
+				Pi.Gpio.Pin26.PinMode = GpioPinDriveMode.Input;
 				// The below lines are reoughly equivalent
-				isOn = Pi.Gpio.Pin21.Read(); // Reads as a boolean
+				isOn = Pi.Gpio.Pin26.Read(); // Reads as a boolean
 				isOnText = isOn ? "on" : "off";
-				Console.WriteLine($"Gpio21 is {isOnText}");
+				Console.WriteLine($"Gpio26 is {isOnText}");
 
 				Console.ReadLine();
 
