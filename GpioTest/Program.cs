@@ -13,21 +13,46 @@ namespace GpioTest
 		{
 			try
 			{
-				using (ITemperatureSensor sensor = new TemperatureSensorForTesting(P1.Gpio22))
-				{
-					//Observable
-					//	.FromEventPattern<SensorDataReadEventArgs>(sensor, "OnMeasure")
-					//	.Sample(TimeSpan.FromSeconds(20))
-					//	.Subscribe(x => Sensor_OnDataAvailable(x.EventArgs));
-					sensor.OnMeasure += Sensor_OnMeasure; ;
-					sensor.Start();
+				var controller = GpioController.Instance;
+				var isOn = controller.Pin21.Read();
+				var isOnText = isOn ? "on" : "off";
+				Console.WriteLine($"Gpio21 is {isOnText}");
 
-					Console.ReadLine();
-				}
+				Console.ReadLine();
 
-				//var controller = GpioController.Instance;
-				//controller.Pin21.Write(GpioPinValue.High);
-				//var isOn = controller.Pin21.Read();
+				Console.WriteLine($"Turnning on Gpio21");
+				controller.Pin21.Write(GpioPinValue.High);
+				Console.WriteLine($"Turned on Gpio21");
+
+				isOn = controller.Pin21.Read();
+				isOnText = isOn ? "on" : "off";
+				Console.WriteLine($"Gpio21 is {isOnText}");
+
+				Console.ReadLine();
+
+				Console.WriteLine($"Turnning off Gpio21");
+				controller.Pin21.Write(GpioPinValue.Low);
+				Console.WriteLine($"Turned off Gpio21");
+
+				isOn = controller.Pin21.Read();
+				isOnText = isOn ? "on" : "off";
+				Console.WriteLine($"Gpio21 is {isOnText}");
+
+				Console.ReadLine();
+
+				//using (ITemperatureSensor sensor = new TemperatureSensorForTesting(P1.Gpio22))
+				//{
+				//	//Observable
+				//	//	.FromEventPattern<SensorDataReadEventArgs>(sensor, "OnMeasure")
+				//	//	.Sample(TimeSpan.FromSeconds(20))
+				//	//	.Subscribe(x => Sensor_OnDataAvailable(x.EventArgs));
+				//	sensor.OnMeasure += Sensor_OnMeasure; ;
+				//	sensor.Start();
+
+				//	Console.ReadLine();
+				//}
+
+
 
 				Console.ReadLine();
 			}
