@@ -13,32 +13,41 @@ namespace GpioTest
 		{
 			try
 			{
-				var controller = GpioController.Instance;
-				var isOn = controller.Pin21.Read();
+				Pi.Gpio.Pin02.PinMode = GpioPinDriveMode.Input;
+				// The below lines are reoughly equivalent
+				var isOn = Pi.Gpio.Pin21.Read(); // Reads as a boolean
 				var isOnText = isOn ? "on" : "off";
 				Console.WriteLine($"Gpio21 is {isOnText}");
 
 				Console.ReadLine();
 
 				Console.WriteLine($"Turnning on Gpio21");
-				controller.Pin21.PinMode = GpioPinDriveMode.Output;
-				controller.Pin21.Write(GpioPinValue.High);
+				Pi.Gpio.Pin21.PinMode = GpioPinDriveMode.Output;
+				// The below lines are reoughly equivalent
+				Pi.Gpio.Pin21.Write(true); // Writes a boolean
 				Console.WriteLine($"Turned on Gpio21");
 
-				controller.Pin21.PinMode = GpioPinDriveMode.Input;
-				isOn = controller.Pin21.Read();
+				Console.ReadLine();
+
+				Pi.Gpio.Pin02.PinMode = GpioPinDriveMode.Input;
+				// The below lines are reoughly equivalent
+				isOn = Pi.Gpio.Pin21.Read(); // Reads as a boolean
 				isOnText = isOn ? "on" : "off";
 				Console.WriteLine($"Gpio21 is {isOnText}");
 
 				Console.ReadLine();
 
 				Console.WriteLine($"Turnning off Gpio21");
-				controller.Pin21.PinMode = GpioPinDriveMode.Output;
-				controller.Pin21.Write(GpioPinValue.Low);
+				Pi.Gpio.Pin21.PinMode = GpioPinDriveMode.Output;
+				// The below lines are reoughly equivalent
+				Pi.Gpio.Pin21.Write(false); // Writes a boolean
 				Console.WriteLine($"Turned off Gpio21");
 
-				controller.Pin21.PinMode = GpioPinDriveMode.Input;
-				isOn = controller.Pin21.Read();
+				Console.ReadLine();
+
+				Pi.Gpio.Pin02.PinMode = GpioPinDriveMode.Input;
+				// The below lines are reoughly equivalent
+				isOn = Pi.Gpio.Pin21.Read(); // Reads as a boolean
 				isOnText = isOn ? "on" : "off";
 				Console.WriteLine($"Gpio21 is {isOnText}");
 
