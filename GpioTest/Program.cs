@@ -21,9 +21,11 @@ namespace GpioTest
 				Console.ReadLine();
 
 				Console.WriteLine($"Turnning on Gpio21");
+				controller.Pin21.PinMode = GpioPinDriveMode.Output;
 				controller.Pin21.Write(GpioPinValue.High);
 				Console.WriteLine($"Turned on Gpio21");
 
+				controller.Pin21.PinMode = GpioPinDriveMode.Input;
 				isOn = controller.Pin21.Read();
 				isOnText = isOn ? "on" : "off";
 				Console.WriteLine($"Gpio21 is {isOnText}");
@@ -31,9 +33,11 @@ namespace GpioTest
 				Console.ReadLine();
 
 				Console.WriteLine($"Turnning off Gpio21");
+				controller.Pin21.PinMode = GpioPinDriveMode.Output;
 				controller.Pin21.Write(GpioPinValue.Low);
 				Console.WriteLine($"Turned off Gpio21");
 
+				controller.Pin21.PinMode = GpioPinDriveMode.Input;
 				isOn = controller.Pin21.Read();
 				isOnText = isOn ? "on" : "off";
 				Console.WriteLine($"Gpio21 is {isOnText}");
